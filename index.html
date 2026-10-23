@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shreyash Uparkar · Cybersecurity</title>
+<meta name="description" content="Shreyash Uparkar: cybersecurity student and practitioner in Pune. SOC operations, web and API VAPT, bug bounty, and AI-assisted security tooling.">
+<meta property="og:title" content="Shreyash Uparkar · Cybersecurity">
+<meta property="og:description" content="SOC operations, web & API VAPT, bug bounty, and AI-assisted security tooling.">
+<meta property="og:url" content="https://shreyash-1406.github.io/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b0f14'/><path d='M16 5l9 4v6c0 6-4 10-9 12-5-2-9-6-9-12V9z' fill='none' stroke='%2337e2a0' stroke-width='2.4'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f14; --panel:#11171f; --panel-2:#16202b; --line:#223041;
+  --text:#e4ebf2; --muted:#8a9bb0; --accent:#37e2a0; --accent-2:#4cc2ff; --warn:#ffb648;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --sans:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f6f8fa; --panel:#ffffff; --panel-2:#eef2f6; --line:#d6dee8;
+    --text:#0f1720; --muted:#566476; --accent:#0a8f5c; --accent-2:#0969da; --warn:#a15c00;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f6f8fa; --panel:#ffffff; --panel-2:#eef2f6; --line:#d6dee8;
+  --text:#0f1720; --muted:#566476; --accent:#0a8f5c; --accent-2:#0969da; --warn:#a15c00;
+}
+:root[data-theme="dark"]{
+  --bg:#0b0f14; --panel:#11171f; --panel-2:#16202b; --line:#223041;
+  --text:#e4ebf2; --muted:#8a9bb0; --accent:#37e2a0; --accent-2:#4cc2ff; --warn:#ffb648;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent-2);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:12px}
+.logo{font-family:var(--mono);font-weight:600;color:var(--text)}
+.logo span{color:var(--accent)}
+.links{display:flex;gap:18px;align-items:center}
+.links a{color:var(--muted);font-size:14px}
+.links a:hover{color:var(--text);text-decoration:none}
+.theme{background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;
+  padding:4px 9px;cursor:pointer;font-family:var(--mono);font-size:12px}
+@media (max-width:720px){.links a.hide-sm{display:none}}
+
+/* hero */
+.hero{padding:88px 0 64px;position:relative}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(600px 300px at 15% 10%,color-mix(in srgb,var(--accent) 12%,transparent),transparent 70%),
+             radial-gradient(500px 260px at 90% 30%,color-mix(in srgb,var(--accent-2) 10%,transparent),transparent 70%)}
+.prompt{font-family:var(--mono);color:var(--accent);font-size:14px;margin-bottom:18px}
+.prompt .cursor{display:inline-block;width:8px;height:16px;background:var(--accent);vertical-align:-3px;
+  margin-left:4px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.prompt .cursor{animation:none}}
+h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.05;margin:0 0 18px;letter-spacing:-.02em}
+.tagline{font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);max-width:640px;margin:0 0 28px}
+.tagline b{color:var(--text);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;
+  font-size:15px;border:1px solid var(--line);color:var(--text);background:var(--panel)}
+.btn:hover{text-decoration:none;border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:#04120c;border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.chip{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);
+  border-radius:999px;padding:4px 11px;background:var(--panel)}
+
+/* sections */
+section{padding:56px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:26px}
+.sec-head .num{font-family:var(--mono);color:var(--accent);font-size:14px}
+h2{font-size:1.65rem;margin:0;letter-spacing:-.01em}
+.lead{color:var(--muted);max-width:720px;margin:-10px 0 26px}
+
+.about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:28px}
+@media (max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about-grid p{margin:0 0 14px}
+.facts{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  font-family:var(--mono);font-size:13px}
+.facts div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.facts div:last-child{border-bottom:0}
+.facts span:first-child{color:var(--muted)}
+.facts span:last-child{text-align:right}
+
+/* timeline */
+.timeline{position:relative;padding-left:22px}
+.timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.job{position:relative;margin-bottom:26px}
+.job::before{content:"";position:absolute;left:-22px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--accent)}
+.job h3{margin:0;font-size:1.08rem}
+.job .meta{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:2px 0 8px}
+.job ul{margin:0;padding-left:18px;color:var(--muted)}
+.job li{margin:3px 0}
+
+/* projects */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;
+  display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:color-mix(in srgb,var(--accent) 60%,var(--line));transform:translateY(-2px)}
+.card h3{margin:0;font-size:1.08rem}
+.card p{margin:0;color:var(--muted);font-size:14.5px;flex:1}
+.status{font-family:var(--mono);font-size:11.5px;padding:2px 9px;border-radius:999px;align-self:flex-start;
+  border:1px solid currentColor}
+.status.live{color:var(--accent)}
+.status.wip{color:var(--warn)}
+.stack{display:flex;flex-wrap:wrap;gap:6px}
+.stack span{font-family:var(--mono);font-size:11.5px;background:var(--panel-2);border-radius:6px;padding:2px 8px;color:var(--muted)}
+.card .go{font-family:var(--mono);font-size:13px;font-weight:500}
+
+/* research */
+.paper{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent-2);
+  border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.paper h3{margin:0 0 4px;font-size:1.05rem}
+.paper p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.skill{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.skill h3{margin:0 0 10px;font-size:.95rem;font-family:var(--mono);color:var(--accent)}
+.skill ul{list-style:none;margin:0;padding:0}
+.skill li{padding:4px 0;font-size:14.5px}
+.skill li::before{content:"▹ ";color:var(--muted)}
+
+/* contact */
+.contact{text-align:center;padding:72px 0 80px}
+.contact p{color:var(--muted);max-width:560px;margin:0 auto 24px}
+.contact .cta{justify-content:center}
+footer{border-top:1px solid var(--line);padding:22px 0;font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center}
+
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">shreyash<span>@</span>sec:~$</a>
+    <div class="links">
+      <a href="#about" class="hide-sm">About</a>
+      <a href="#experience" class="hide-sm">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button class="theme" id="themeBtn" aria-label="Toggle colour theme">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="prompt">$ whoami<span class="cursor"></span></div>
+    <h1>Shreyash Uparkar</h1>
+    <p class="tagline">Cybersecurity engineer in the making: <b>SOC operations</b>, <b>web &amp; API penetration testing</b>,
+      and <b>AI-assisted security tooling</b>. Final-year B.Tech CSIT (Cybersecurity) student in Pune.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View projects →</a>
+      <a class="btn" href="https://github.com/shreyash-1406" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="mailto:shuparkar@gmail.com">Email me</a>
+    </div>
+    <div class="chips">
+      <span class="chip">SOC / SIEM</span><span class="chip">VAPT</span><span class="chip">OWASP Top 10</span>
+      <span class="chip">Bug bounty</span><span class="chip">HackTheBox</span><span class="chip">DPDPA</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">01.</span><h2>About</h2></div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I'm a final-year cybersecurity student at Symbiosis Skills and Professional University, Pune. I like the
+          practical side of security: watching alerts in a SOC, breaking web applications to find what's exposed,
+          and writing tools that take the repetitive work out of both.</p>
+        <p>Across four internships I've monitored and triaged security events as a SOC analyst, tested production
+          web apps feature by feature, and reported issues like exposed API documentation, unprotected admin
+          dashboards and broken access control.</p>
+        <p>Outside work I hunt on HackerOne and Bugcrowd, practise on HackTheBox and CTFs, and run structured
+          cybersecurity training for junior students.</p>
+      </div>
+      <div class="facts">
+        <div><span>location</span><span>Pune, India</span></div>
+        <div><span>degree</span><span>B.Tech CSIT (Cybersecurity)</span></div>
+        <div><span>graduating</span><span>2027</span></div>
+        <div><span>focus</span><span>SOC · VAPT · AppSec</span></div>
+        <div><span>learning</span><span>Java, AI for security</span></div>
+        <div><span>status</span><span style="color:var(--accent)">open to roles</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">02.</span><h2>Experience</h2></div>
+    <div class="timeline">
+      <div class="job reveal">
+        <h3>Security Researcher / Cyber Security Intern · Sciqus Infotech Pvt Ltd</h3>
+        <div class="meta">Jun 2026 – Jul 2026 · Pune</div>
+        <ul>
+          <li>Tested the Sciqus Console and AMS web applications feature by feature.</li>
+          <li>Reported issues including exposed Swagger API docs, an exposed admin dashboard, and access to other users' messages and notifications via session IDs.</li>
+          <li>Built realistic CRM datasets used to train the company's AI model.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <h3>SOC Analyst Intern · Defensanet Securities LLP</h3>
+        <div class="meta">Oct 2025 – Jul 2026</div>
+        <ul><li>Monitored and triaged security alerts, investigated suspicious activity, and escalated incidents.</li></ul>
+      </div>
+      <div class="job reveal">
+        <h3>Security Architect Intern · Cyber Secured India</h3>
+        <div class="meta">Jun 2025 – Jul 2025</div>
+      </div>
+      <div class="job reveal">
+        <h3>Data Analyst Intern · Arc Solutions</h3>
+        <div class="meta">Jun 2024 – Aug 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">03.</span><h2>Projects</h2></div>
+    <p class="lead">Open-source security tools on GitHub. Each repo has setup steps, examples and tests.</p>
+    <div class="grid">
+      <article class="card reveal">
+        <span class="status live">● live</span>
+        <h3>AI Secure Code Review Platform</h3>
+        <p>Web app that pairs a static rule engine with a local LLM: the model checks each finding in context,
+          flags false positives, explains the risk and suggests fixed code.</p>
+        <div class="stack"><span>Python</span><span>Flask</span><span>Ollama</span><span>SQLite</span><span>Docker</span></div>
+        <a class="go" href="https://github.com/shreyash-1406/ai-secure-code-review" target="_blank" rel="noopener">view repo →</a>
+      </article>
+      <article class="card reveal">
+        <span class="status live">● live</span>
+        <h3>Code Security &amp; Quality Scanner</h3>
+        <p>Static analysis CLI with 27 CWE-mapped rules, AST-based quality checks, a security score,
+          HTML/JSON reports and a CI gate that fails builds on serious issues.</p>
+        <div class="stack"><span>Python</span><span>AST</span><span>GitHub Actions</span></div>
+        <a class="go" href="https://github.com/shreyash-1406/code-security-scanner" target="_blank" rel="noopener">view repo →</a>
+      </article>
+      <article class="card reveal">
+        <span class="status live">● live</span>
+        <h3>Bash Recon Pipeline</h3>
+        <p>One script that chains subdomain enumeration, live-host detection, port scanning and archived-URL
+          discovery into an organised folder with a summary report.</p>
+        <div class="stack"><span>Bash</span><span>subfinder</span><span>httpx</span><span>nmap</span></div>
+        <a class="go" href="https://github.com/shreyash-1406/bash-recon-pipeline" target="_blank" rel="noopener">view repo →</a>
+      </article>
+      <article class="card reveal">
+        <span class="status wip">◐ in progress</span>
+        <h3>AI-Powered DPDPA Compliance Platform</h3>
+        <p>Organisations declare their tech stack and get a gap map and compliance roadmap against India's
+          Digital Personal Data Protection Act.</p>
+        <div class="stack"><span>DPDPA</span><span>GRC</span><span>AI</span></div>
+      </article>
+      <article class="card reveal">
+        <span class="status wip">◐ in progress</span>
+        <h3>AI-Powered Unified SOC Dashboard</h3>
+        <p>Normalises alerts from several security tools into one schema, scores and de-duplicates them,
+          and adds AI-assisted triage summaries.</p>
+        <div class="stack"><span>Python</span><span>SIEM</span><span>MITRE ATT&amp;CK</span></div>
+      </article>
+      <article class="card reveal">
+        <span class="status wip">◐ in progress</span>
+        <h3>Enterprise Home SOC Lab</h3>
+        <p>A home lab with SIEM, endpoint agents and controlled attack simulations for practising detection
+          engineering end to end.</p>
+        <div class="stack"><span>SIEM</span><span>Detection rules</span><span>Linux</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">04.</span><h2>Research</h2></div>
+    <div class="paper reveal">
+      <h3>DPDPA-Based Privacy and Security Gap Assessment Platform</h3>
+      <p>Co-author, with SSPU CSIT classmates · submitted to a college conference, 2026</p>
+    </div>
+    <div class="paper reveal">
+      <h3>GNN-IDS: Continual-Learning Graph Neural Network Intrusion Detection</h3>
+      <p>Co-author · in preparation, 2026</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">05.</span><h2>Skills</h2></div>
+    <div class="skills">
+      <div class="skill reveal"><h3>// offensive</h3><ul>
+        <li>Web &amp; API VAPT</li><li>OWASP Top 10</li><li>Burp Suite</li><li>Nmap &amp; recon</li><li>Bug bounty</li></ul></div>
+      <div class="skill reveal"><h3>// defensive</h3><ul>
+        <li>SOC monitoring &amp; triage</li><li>SIEM</li><li>Incident escalation</li><li>DPDPA compliance</li></ul></div>
+      <div class="skill reveal"><h3>// code</h3><ul>
+        <li>Python</li><li>Bash</li><li>SQL</li><li>C</li><li>Java (learning)</li></ul></div>
+      <div class="skill reveal"><h3>// platforms</h3><ul>
+        <li>Linux</li><li>Git &amp; GitHub</li><li>HackTheBox / CTFs</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="prompt">$ ./contact.sh</div>
+    <h2 style="font-size:2rem;margin-bottom:12px">Let's talk</h2>
+    <p>I'm looking for cybersecurity roles in SOC, VAPT and application security. If you're hiring or want to
+      collaborate, my inbox is open.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:shuparkar@gmail.com">shuparkar@gmail.com</a>
+      <a class="btn" href="https://github.com/shreyash-1406" target="_blank" rel="noopener">github.com/shreyash-1406</a>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="yr">2026</span> Shreyash Uparkar · built with plain HTML &amp; CSS · hosted on GitHub Pages</footer>
+
+<script>
+  // theme toggle (remembered per browser)
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('themeBtn');
+    try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+    btn.addEventListener('click', function () {
+      var dark = getComputedStyle(root).getPropertyValue('--bg').trim().toLowerCase() === '#0b0f14';
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+  // reveal on scroll
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
